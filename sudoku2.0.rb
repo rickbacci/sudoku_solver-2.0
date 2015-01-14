@@ -115,11 +115,20 @@ def set_number_if_single_possibility
 end
 
 
-def set_if_last_number
+# def set_if_last_number
 
 
+# end
+
+
+def puzzle_done?
+  solved_cells = 0
+  @board.each do |cell|  
+    solved_cells += 1 if cell.cell.possibilities.empty?
+  end
+  return true if solved_cells == 81
+  false
 end
-
 
 
 
@@ -172,5 +181,7 @@ set_number_if_single_possibility
 end
 
 print_puzzle
+
+p puzzle_done?
 
 
