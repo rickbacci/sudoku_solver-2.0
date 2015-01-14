@@ -135,53 +135,72 @@ end
 
 
 
+
+
 simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
 
 generate_cells(simple)
 generate_board
 
-remove_impossibilities_from_rows
-remove_impossibilities_from_cols
-remove_impossibilities_from_boxes
+@solved_cells_start_of_recursion = 0
 
-set_number_if_single_possibility
-
-remove_impossibilities_from_rows
-remove_impossibilities_from_cols
-remove_impossibilities_from_boxes
-
-set_number_if_single_possibility
-
-remove_impossibilities_from_rows
-remove_impossibilities_from_cols
-remove_impossibilities_from_boxes
-
-set_number_if_single_possibility
-
-remove_impossibilities_from_rows
-remove_impossibilities_from_cols
-remove_impossibilities_from_boxes
-
-set_number_if_single_possibility
-
-remove_impossibilities_from_rows
-remove_impossibilities_from_cols
-remove_impossibilities_from_boxes
-
-set_number_if_single_possibility
+@solved_cells_end_of_recursion = 0
 
 
 
-10.times { puts }
+def solve_puzzle
+  @loops ||= 0
+  @solved_cells_start_of_recursion = @board.find_all { |cell| cell.cell.possibilities == [] }.count
+  puts "  Start of loop #{@loops + 1} with #{@solved_cells_start_of_recursion} cells solved"
 
 
-(1..9).each do |val|
-  #puts @board.find_all { |v| v.box == val}
-  #puts
+  remove_impossibilities_from_rows
+  remove_impossibilities_from_cols
+  remove_impossibilities_from_boxes
+
+  set_number_if_single_possibility  
+
+  @loops += 1
+  @solved_cells_end_of_recursion = @board.find_all { |cell| cell.cell.possibilities == [] }.count
+  puts "    End of loop #{@loops} with #{@solved_cells_end_of_recursion} cells solved"
+  puts
+
+
+  if @solved_cells_start_of_recursion == 81
+    puts
+    return "puzzle solved!!!"
+  elsif @solved_cells_end_of_recursion == @solved_cells_end_of_recursion
+    solve_puzzle unless @loops == 20
+  else
+    solve_puzzle unless @loops == 20
+  end
 end
+
+
+puts
+puts '-----------------------------------------------------------------------------------------------------'
+puts 'start of program'
+puts '-----------------------------------------------------------------------------------------------------'
+
+
+# (1..9).each do |val|
+#   #puts @board.find_all { |v| v.box == val}
+#   #puts
+# end
+
+
+
+
+solve_puzzle
 
 print_puzzle
 
-p puzzle_done?
+puzzle_done?
+
+puts
+puts '-----------------------------------------------------------------------------------------------------'
+puts 'end of program'
+puts '-----------------------------------------------------------------------------------------------------'
+
 
 
