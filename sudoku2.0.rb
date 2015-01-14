@@ -1,48 +1,176 @@
-# 111, 121, 131,   142, 152, 162,   173, 183, 193
-# 211, 221, 231,   242, 252, 262,   273, 283, 293
-# 311, 321, 331,   342, 352, 362,   373, 383, 393
+require_relative 'data'
 
-# 414, 424, 434,   445, 455, 465,   476, 486, 496
-# 514, 524, 534,   545, 555, 565,   576, 586, 596
-# 614, 624, 634,   645, 655, 665,   676, 686, 696
 
-# 717, 727, 737,   748, 758, 768,   779, 789, 799
-# 817, 827, 837,   848, 858, 868,   879, 889, 899
-# 917, 927, 937,   948, 958, 968,   979, 989, 999
 
-BOARD =  "111, 121, 131, 142, 152, 162, 173, 183, 193, 
-          211, 221, 231, 242, 252, 262, 273, 283, 293,
-          311, 321, 331, 342, 352, 362, 373, 383, 393,
-          414, 424, 434, 445, 455, 465, 476, 486, 496,
-          514, 524, 534, 545, 555, 565, 576, 586, 596,
-          614, 624, 634, 645, 655, 665, 676, 686, 696,
-          717, 727, 737, 748, 758, 768, 779, 789, 799,
-          817, 827, 837, 848, 858, 868, 879, 889, 899,
-          917, 927, 937, 948, 958, 968, 979, 989, 999"
-
-@board = []
-
-Board = Struct.new(:row, :col, :box)
+ Board = Struct.new(:row, :col, :box, :cell)
+  Cell = Struct.new(:number, :possibilities)
        
-def generate_board(values)
+@numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @cells = []
+  @board = []
 
-  values.each do |element|
 
-    row = element[0]
-    col = element[1]
-    box = element[2]
 
+def generate_cells(puzzle)
+
+  (1..81).each do |element|
+
+    index = element - 1
+     cell = Cell.new
+    value = puzzle[index].to_i
+
+    if value == 0
+      cell.possibilities = @numbers
+    else
+      cell.possibilities = []
+      cell.number = value
+    end
+    
+    @cells << cell
+  end
+end
+
+
+def generate_board
+
+  VALUES.each_with_index do |element, index|
+    
+    row = element[0].to_i
+    col = element[1].to_i
+    box = element[2].to_i
+     
     board = Board.new
 
     board.row = row
     board.col = col
     board.box = box
+    board.cell = @cells[index]
 
     @board << board
   end
+  @board
 end
 
-generate_board(BOARD)
-p @board
+
+
+
+
+def remove_impossibilities_from_rows
+
+  @numbers.each do |val|
+
+  @unsolved_cells = @board.find_all { |x| x.row == val && x.cell.possibilities.length > 1 }
+    @solved_cells = @board.find_all { |x| x.row == val && !x.cell.number.nil? }
+
+    @unsolved_cells.each do |unsolved|
+      @solved_cells.each do |solved|
+        unsolved.cell.possibilities -= [solved.cell.number]
+
+        
+      end
+    end
+  end
+end
+
+def remove_impossibilities_from_cols
+
+  @numbers.each do |val|
+
+  @unsolved_cells = @board.find_all { |x| x.col == val && x.cell.possibilities.length > 1 }
+    @solved_cells = @board.find_all { |x| x.col == val && !x.cell.number.nil? }
+
+    @unsolved_cells.each do |unsolved|
+      @solved_cells.each do |solved|
+        unsolved.cell.possibilities -= [solved.cell.number] 
+      end
+    end
+  end
+end
+
+def remove_impossibilities_from_boxes
+
+  @numbers.each do |val|
+
+    @unsolved_cells = @board.find_all { |x| x.box == val && x.cell.possibilities.length > 1 }
+     @solved_cells = @board.find_all { |x| x.box == val && !x.cell.number.nil? }
+
+    @unsolved_cells.each do |unsolved|
+      @solved_cells.each do |solved|
+        unsolved.cell.possibilities -= [solved.cell.number] 
+      end
+    end
+  end
+end
+
+
+
+
+def set_number_if_single_possibility
+  @board.each do |space|
+    if space.cell.possibilities.size == 1
+      space.cell.number = space.cell.possibilities[0]
+      space.cell.possibilities = []
+    end
+  end
+end
+
+
+def set_if_last_number
+
+
+end
+
+
+
+
+
+
+
+simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
+
+generate_cells(simple)
+generate_board
+
+remove_impossibilities_from_rows
+remove_impossibilities_from_cols
+remove_impossibilities_from_boxes
+
+set_number_if_single_possibility
+
+remove_impossibilities_from_rows
+remove_impossibilities_from_cols
+remove_impossibilities_from_boxes
+
+set_number_if_single_possibility
+
+remove_impossibilities_from_rows
+remove_impossibilities_from_cols
+remove_impossibilities_from_boxes
+
+set_number_if_single_possibility
+
+remove_impossibilities_from_rows
+remove_impossibilities_from_cols
+remove_impossibilities_from_boxes
+
+set_number_if_single_possibility
+
+remove_impossibilities_from_rows
+remove_impossibilities_from_cols
+remove_impossibilities_from_boxes
+
+set_number_if_single_possibility
+
+
+
+10.times { puts }
+
+
+(1..9).each do |val|
+  #puts @board.find_all { |v| v.box == val}
+  #puts
+end
+
+print_puzzle
 
 
