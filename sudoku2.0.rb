@@ -8,6 +8,8 @@ require_relative 'data'
 @numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   @cells = []
   @board = []
+  @solved_cells_start_of_recursion = 0
+  @solved_cells_end_of_recursion = 0
 
 
 
@@ -137,17 +139,6 @@ end
 
 
 
-simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
-
-generate_cells(simple)
-generate_board
-
-@solved_cells_start_of_recursion = 0
-
-@solved_cells_end_of_recursion = 0
-
-
-
 def solve_puzzle
   @loops ||= 0
   @solved_cells_start_of_recursion = @board.find_all { |cell| cell.cell.possibilities == [] }.count
@@ -169,8 +160,13 @@ def solve_puzzle
   if @solved_cells_start_of_recursion == 81
     puts
     return "puzzle solved!!!"
-  elsif @solved_cells_end_of_recursion == @solved_cells_end_of_recursion
-    solve_puzzle unless @loops == 20
+  elsif @solved_cells_start_of_recursion == @solved_cells_end_of_recursion
+    puts
+    (1..9).each do |val|
+      puts @board.find_all { |v| v.box == val}
+      puts
+    end
+    return "puzzle incomplete!!!"
   else
     solve_puzzle unless @loops == 20
   end
@@ -181,21 +177,24 @@ puts
 puts '-----------------------------------------------------------------------------------------------------'
 puts 'start of program'
 puts '-----------------------------------------------------------------------------------------------------'
+puts
+puts
+
+simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
+  easy = '040020050100000007000358000402070905503984702090000040700000008904731506600090001'
+
+#generate_cells(simple)
+generate_cells(easy)
+
+generate_board
 
 
-# (1..9).each do |val|
-#   #puts @board.find_all { |v| v.box == val}
-#   #puts
-# end
+p solve_puzzle
 
-
-
-
-solve_puzzle
+puts
 
 print_puzzle
-
-puzzle_done?
+#puzzle_done?
 
 puts
 puts '-----------------------------------------------------------------------------------------------------'
