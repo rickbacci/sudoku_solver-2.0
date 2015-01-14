@@ -5,9 +5,9 @@ require_relative 'data'
  Board = Struct.new(:row, :col, :box, :cell)
   Cell = Struct.new(:number, :possibilities)
        
-@numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @cells = []
-  @board = []
+  @numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @cells = []
+    @board = []
   @solved_cells_start_of_recursion = 0
   @solved_cells_end_of_recursion = 0
 
@@ -54,9 +54,6 @@ def generate_board
 end
 
 
-
-
-
 def remove_impossibilities_from_rows
 
   @numbers.each do |val|
@@ -74,6 +71,7 @@ def remove_impossibilities_from_rows
   end
 end
 
+
 def remove_impossibilities_from_cols
 
   @numbers.each do |val|
@@ -88,6 +86,7 @@ def remove_impossibilities_from_cols
     end
   end
 end
+
 
 def remove_impossibilities_from_boxes
 
@@ -105,8 +104,6 @@ def remove_impossibilities_from_boxes
 end
 
 
-
-
 def set_number_if_single_possibility
   @board.each do |space|
     if space.cell.possibilities.size == 1
@@ -117,10 +114,64 @@ def set_number_if_single_possibility
 end
 
 
-# def set_if_last_number
+def set_if_last_number_in_row
+
+  @numbers.each do |val|
+
+    @unsolved_cells = @board.find_all { |x| x.row == val && x.cell.possibilities.length > 1 }
+      @solved_cells = @board.find_all { |x| x.row == val && !x.cell.number.nil? }
+      @number_count = 0
+
+    @unsolved_cells.each do |unsolved|
+      @number_count += 1 if unsolved.include?(val)
+    end
+
+    @unsolved_cells.each do |unsolved|
+      unsolved.cell.possibilities = [val] if @number_count == 1
+    end
+  end
+end
 
 
-# end
+def set_if_last_number_in_col
+
+  @numbers.each do |val|
+
+    @unsolved_cells = @board.find_all { |x| x.col == val && x.cell.possibilities.length > 1 }
+      @number_count = 0
+
+    @unsolved_cells.each do |unsolved|
+      @number_count += 1 if unsolved.include?(val)
+    end
+
+    @unsolved_cells.each do |unsolved|
+      unsolved.cell.possibilities = [val] if @number_count == 1
+    end
+  end
+end
+
+
+
+
+
+def set_if_last_number_in_box
+
+  @numbers.each do |val|
+
+    #next if @board.find_all { |x| x.box == val && x.cell.number == val }
+
+    @unsolved_cells = @board.find_all { |x| x.box == val && x.cell.possibilities.length > 1 }
+      @number_count = 0
+
+    @unsolved_cells.each do |unsolved|
+      @number_count += 1 if unsolved.include?(val)
+    end
+
+    @unsolved_cells.each do |unsolved|
+      unsolved.cell.possibilities = [val] if @number_count == 1
+    end
+  end
+end
 
 
 def puzzle_done?
@@ -133,12 +184,6 @@ def puzzle_done?
 end
 
 
-
-
-
-
-
-
 def solve_puzzle
   @loops ||= 0
   @solved_cells_start_of_recursion = @board.find_all { |cell| cell.cell.possibilities == [] }.count
@@ -149,7 +194,12 @@ def solve_puzzle
   remove_impossibilities_from_cols
   remove_impossibilities_from_boxes
 
-  set_number_if_single_possibility  
+  set_number_if_single_possibility
+
+  set_if_last_number_in_row
+  set_if_last_number_in_col
+  set_if_last_number_in_box
+
 
   @loops += 1
   @solved_cells_end_of_recursion = @board.find_all { |cell| cell.cell.possibilities == [] }.count
@@ -182,9 +232,11 @@ puts
 
 simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
   easy = '040020050100000007000358000402070905503984702090000040700000008904731506600090001'
+  #mild = '006020500000000000409568102501907406002080900000000000600000009900010003005793200'
 
 #generate_cells(simple)
 generate_cells(easy)
+#generate_cells(mild)
 
 generate_board
 
