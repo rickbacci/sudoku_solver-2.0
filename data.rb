@@ -1,17 +1,48 @@
 
-VALUES = ['111', '121', '131', '142', '152', '162', '173', '183', '193', 
-          '211', '221', '231', '242', '252', '262', '273', '283', '293',
-          '311', '321', '331', '342', '352', '362', '373', '383', '393',
-          '414', '424', '434', '445', '455', '465', '476', '486', '496',
-          '514', '524', '534', '545', '555', '565', '576', '586', '596',
-          '614', '624', '634', '645', '655', '665', '676', '686', '696',
-          '717', '727', '737', '748', '758', '768', '779', '789', '799',
-          '817', '827', '837', '848', '858', '868', '879', '889', '899',
-          '917', '927', '937', '948', '958', '968', '979', '989', '999']
+def puzzle_done?
+  solved_cells = 0
+  @board.each do |cell|  
+    solved_cells += 1 if cell.cell.possibilities.empty?
+  end
+  return true if solved_cells == 81
+  false
+end
 
+def print_objects
+  (1..9).each do |val|
+    puts @board.find_all { |v| v.box == val}
+    puts
+  end
+end
 
+def number_of_completed_cells
+  @board.find_all { |cell| cell.cell.possibilities == [] }.count
+end
 
-simple = '246508370150000600389160500000070804013900005000020703471850900920000400638209150'
+def number_of_possibilities
+  possibilities = []
+
+  @board.each do |cell|
+    possibilities << cell.cell.possibilities if cell.cell.possibilities.size > 1
+  end
+  possibilities.flatten.size
+end
+
+def possibilities_remaining
+  @current_possibilities -= possibilities_removed
+end
+
+def possibilities_removed
+  @current_possibilities - number_of_possibilities
+end
+
+def cells_completed
+  @current_solved_cells
+end
+
+def cells_remaining
+  81 - cells_completed
+end
 
 
 def print_puzzle
@@ -48,4 +79,58 @@ def print_puzzle
   p r.flatten
   puts
 end
+
+
+def print_string
+  string = ''
+
+  @board.each do |cell|
+    if cell.cell.number.nil?
+      string << 0.to_s
+    else
+      string << cell.cell.number.to_s
+    end
+  end
+  puts string
+end
+
+
+def start_of_program
+  100.times { puts }
+  puts
+  puts '-----------------------------------------------------------------------------------------------------'
+  puts "--- start of program --- this puzzle starts with #{number_of_completed_cells} completed cells"
+  puts '-----------------------------------------------------------------------------------------------------'
+  puts
+  print_string
+  puts
+end
+
+def end_of_program
+  puts
+  print_puzzle
+  print_string
+  puts
+  puts '-----------------------------------------------------------------------------------------------------'
+  puts '--- end of program'
+  puts '-----------------------------------------------------------------------------------------------------'
+  puts
+end
+
+def loop_start
+  puts "--- Start of loop #{@loops + 1} --- #{number_of_completed_cells} completed cells "\
+       "--- #{number_of_possibilities} possibilities remaining"
+  puts
+end
+
+def loop_end
+  puts "--- End of loop #{@loops} ----------------------------------------------------------------------------"
+  puts
+  print_string
+  puts
+end
+
+
+
+
 
