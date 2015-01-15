@@ -118,7 +118,7 @@ def end_of_program
 end
 
 def loop_start
-  puts "--- Start of loop #{@loops + 1} --- #{number_of_completed_cells} completed cells "\
+  puts "--- Start of loop #{@loops} --- #{number_of_completed_cells} completed cells "\
        "--- #{number_of_possibilities} possibilities remaining"
   puts
 end

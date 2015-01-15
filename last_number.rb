@@ -10,8 +10,10 @@ def set_number_if_single_possibility
   end
 
   if completed_cells == number_of_completed_cells
+    puts
     puts "    #{__callee__} --- #{cells_completed} cells completed "\
          "--- #{cells_remaining} cells remaining"
+    puts
   else
     #puts "recursing #{__callee__}"
     set_number_if_single_possibility
