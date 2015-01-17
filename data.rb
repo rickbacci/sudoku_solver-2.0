@@ -9,6 +9,7 @@ def puzzle_done?
 end
 
 def print_objects
+  puts
   (1..9).each do |val|
     puts @board.find_all { |v| v.box == val}
     puts
@@ -29,15 +30,15 @@ def number_of_possibilities
 end
 
 def possibilities_remaining
-  @current_possibilities -= possibilities_removed
+  @possibilities_at_start_of_recursion -= possibilities_removed
 end
 
 def possibilities_removed
-  @current_possibilities - number_of_possibilities
+  @possibilities_at_start_of_recursion - number_of_possibilities
 end
 
 def cells_completed
-  @current_solved_cells
+  number_of_completed_cells
 end
 
 def cells_remaining
@@ -56,33 +57,20 @@ def print_puzzle
     end
   end
 
-
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  puts
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  puts
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  r = @test.shift(3) << @test.shift(3) << @test.shift(3)
-  p r.flatten
-  puts
+  3.times do 
+    3.times do
+      r = '    '
+      s = @test.shift(3) << @test.shift(3) << @test.shift(3)
+      r << s.flatten.to_s
+      puts r
+    end
+    puts
+  end
 end
 
 
 def print_string
-  string = ''
+  string = '    '
 
   @board.each do |cell|
     if cell.cell.number.nil?
@@ -96,7 +84,7 @@ end
 
 
 def start_of_program
-  100.times { puts }
+  #10.times { puts }
   puts
   puts '-----------------------------------------------------------------------------------------------------'
   puts "--- start of program --- this puzzle starts with #{number_of_completed_cells} completed cells"
