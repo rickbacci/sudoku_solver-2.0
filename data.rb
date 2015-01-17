@@ -30,7 +30,8 @@ def number_of_possibilities
 end
 
 def possibilities_remaining
-  @possibilities_at_start_of_recursion -= possibilities_removed
+  @possibilities_remaining = @possibilities_after_recursion - possibilities_removed
+  #@possibilities_after_recursion# -= possibilities_removed
 end
 
 def possibilities_removed
@@ -44,6 +45,37 @@ end
 def cells_remaining
   81 - cells_completed
 end
+
+def get_cells(&b)
+  @board.find_all(&b)
+end
+
+
+def unsolved_row(num)
+  get_cells { |x| x.row == num && x.cell.possibilities.length >= 1 }
+end
+
+def solved_row(num)
+  get_cells { |x| x.row == num && !x.cell.number.nil? }
+end
+
+
+def unsolved_col(num)
+  get_cells { |x| x.col == num && x.cell.possibilities.length >= 1 }
+end
+
+def solved_col(num)
+  get_cells { |x| x.col == num && !x.cell.number.nil? }
+end
+
+def unsolved_box(num)
+  get_cells { |x| x.box == num && x.cell.possibilities.length >= 1 }
+end
+
+def solved_box(num)
+  get_cells { |x| x.box == num && !x.cell.number.nil? }
+end
+
 
 
 def print_puzzle
@@ -118,7 +150,14 @@ def loop_end
   puts
 end
 
+def record_possibilities_removed(possibilities_r, possibilities_re)
+  @log << ''
+  @log << "    #{caller_locations(1,1)[0].label}  --- #{possibilities_r} possibilities removed "\
+         "--- #{possibilities_re} remaining" 
+  @log << ''
+end
 
-
-
-
+def print_possibilities_removed(possibilities_removed, possibilities_remaining)
+  puts "    #{caller_locations(1,1)[0].label}  --- #{possibilities_removed} possibilities removed "\
+         "--- #{possibilities_remaining} remaining" 
+end
