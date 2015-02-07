@@ -18,9 +18,7 @@ def cells_have_been_set
   @solved_cells_start_of_recursion != number_of_completed_cells
 end
   
-def loops
-  @loops
-end 
+
 
 @log = []
 def log
@@ -30,13 +28,12 @@ end
 
 
 def solve_puzzle
-  loops ||= 1
+  @loops ||= 1
 
 
   @check_again_for_impossibilities = false
 
   @solved_cells_start_of_recursion = number_of_completed_cells
-  #@possibilities_at_start_of_recursion = number_of_possibilities
 
   return puts '--- Puzzle solved!' if @solved_cells_start_of_recursion == 81
 
@@ -50,10 +47,19 @@ def solve_puzzle
   check_for_impossibilities if cells_have_been_set
 
   puts
-  set_if_last_number_in_row
+  #set_if_last_number_in_row
+
+    check_for_impossibilities if cells_have_been_set
+
 
   #set_if_last_number_in_col
+
+    #check_for_impossibilities if cells_have_been_set
+
   #set_if_last_number_in_box
+
+    #check_for_impossibilities if cells_have_been_set
+
   puts
 
   loop_end
@@ -62,8 +68,8 @@ def solve_puzzle
 
   return puts '--- Puzzle incomplete!' if no_cells_have_been_set
 
-  loops += 1
-  solve_puzzle unless loops == 25 
+  @loops += 1
+  solve_puzzle unless @loops == 25 
 end 
 
 
@@ -71,4 +77,4 @@ start_of_program
 solve_puzzle
 end_of_program
 
-log.each { |entry| puts entry}
+#log.each { |entry| puts entry}
