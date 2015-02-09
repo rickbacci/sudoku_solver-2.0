@@ -66,4 +66,11 @@ class Sudoku::UI # module Sudoku...class Ui
     puts
   end
 
+  def self.loop_end(loops, board)
+    puts "--- End of loop #{loops} ----------------------------------------------------------------------------"
+    puts
+    Sudoku::UI.print_string(board)
+    puts
+  end
+
 end

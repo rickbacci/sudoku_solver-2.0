@@ -77,13 +77,6 @@ def solved_box(num)
 end
 
 
-def loop_end
-  puts "--- End of loop #{@loops} ----------------------------------------------------------------------------"
-  puts
-  Sudoku::UI.print_string(@board)
-  puts
-end
-
 def record_possibilities_removed(possibilities_r, possibilities_re)
   @log << ''
   @log << "    #{caller_locations(1,1)[0].label}  --- #{possibilities_r} possibilities removed "\

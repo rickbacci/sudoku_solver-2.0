@@ -69,7 +69,7 @@ def solve_puzzle
 
   puts
 
-  loop_end
+  Sudoku::UI.loop_end(@loops, @board)
 
   @solved_cells_end_of_recursion = number_of_completed_cells
 
