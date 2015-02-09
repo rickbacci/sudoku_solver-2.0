@@ -115,16 +115,7 @@ def print_string
 end
 
 
-def start_of_program
-  #10.times { puts }
-  puts
-  puts '-----------------------------------------------------------------------------------------------------'
-  puts "--- start of program --- this puzzle starts with #{number_of_completed_cells} completed cells"
-  puts '-----------------------------------------------------------------------------------------------------'
-  puts
-  print_string
-  puts
-end
+
 
 def end_of_program
   puts
