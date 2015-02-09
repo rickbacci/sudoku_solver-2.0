@@ -77,27 +77,6 @@ def solved_box(num)
 end
 
 
-
-
-
-def print_string
-  string = '    '
-
-  @board.each do |cell|
-    if cell.cell.number.nil?
-      string << 0.to_s
-    else
-      string << cell.cell.number.to_s
-    end
-  end
-  puts string
-end
-
-
-
-
-
-
 def loop_start
   puts "--- Start of loop #{@loops} --- #{number_of_completed_cells} completed cells "\
        "--- #{number_of_possibilities} possibilities remaining"
@@ -107,7 +86,7 @@ end
 def loop_end
   puts "--- End of loop #{@loops} ----------------------------------------------------------------------------"
   puts
-  print_string
+  Sudoku::UI.print_string(@board)
   puts
 end
 
