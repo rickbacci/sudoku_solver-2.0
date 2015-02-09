@@ -82,6 +82,6 @@ end
 
 Sudoku::UI.start_of_program(@board, number_of_completed_cells)
 solve_puzzle
-end_of_program
+Sudoku::UI.end_of_program(@board)
 
 #log.each { |entry| puts entry}
