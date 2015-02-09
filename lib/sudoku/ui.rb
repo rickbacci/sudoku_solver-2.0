@@ -60,4 +60,10 @@ class Sudoku::UI # module Sudoku...class Ui
     puts
   end
 
+  def self.loop_start(loops, completed_cells, possibilities)
+    puts "--- Start of loop #{loops} --- #{completed_cells} completed cells "\
+         "--- #{possibilities} possibilities remaining"
+    puts
+  end
+
 end

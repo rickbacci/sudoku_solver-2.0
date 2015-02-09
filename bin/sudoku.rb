@@ -44,7 +44,7 @@ def solve_puzzle
 
   return puts '--- Puzzle solved!' if @solved_cells_start_of_recursion == 81
 
-  loop_start
+  Sudoku::UI.loop_start(@loops, number_of_completed_cells, number_of_possibilities)
 
 
   check_for_impossibilities

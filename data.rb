@@ -77,12 +77,6 @@ def solved_box(num)
 end
 
 
-def loop_start
-  puts "--- Start of loop #{@loops} --- #{number_of_completed_cells} completed cells "\
-       "--- #{number_of_possibilities} possibilities remaining"
-  puts
-end
-
 def loop_end
   puts "--- End of loop #{@loops} ----------------------------------------------------------------------------"
   puts
