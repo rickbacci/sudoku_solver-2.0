@@ -79,6 +79,8 @@ end
 
 
 def print_puzzle
+  lines_to_print = []
+
   @test =[]
 
   @board.each do |cell|
@@ -89,15 +91,16 @@ def print_puzzle
     end
   end
 
-  3.times do 
+  3.times do
     3.times do
       r = '    '
       s = @test.shift(3) << @test.shift(3) << @test.shift(3)
       r << s.flatten.to_s
-      puts r
+      lines_to_print << r
     end
-    puts
   end
+
+  lines_to_print.join("\n")
 end
 
 
@@ -119,7 +122,8 @@ end
 
 def end_of_program
   puts
-  print_puzzle
+  puts print_puzzle
+  puts
   print_string
   puts
   puts '-----------------------------------------------------------------------------------------------------'
