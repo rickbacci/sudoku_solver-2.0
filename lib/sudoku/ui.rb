@@ -67,7 +67,7 @@ class Sudoku::UI # module Sudoku...class Ui
   end
 
   def self.loop_end(loops, board)
-    puts "--- End of loop #{loops} ----------------------------------------------------------------------------"
+    puts "--- End of loop #{loops} " << "#{'-' * 75}"
     puts
     Sudoku::UI.print_string(board)
     puts
