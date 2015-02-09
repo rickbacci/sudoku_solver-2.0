@@ -1,11 +1,14 @@
 class Sudoku::UI # module Sudoku...class Ui
 
-
+  def self.dashes
+    "#{'-' * 100}"
+  end
   def self.start_of_program(board, number_of_completed_cells)
     puts
-    puts '-----------------------------------------------------------------------------------------------------'
-    puts "--- start of program --- this puzzle starts with #{number_of_completed_cells} completed cells"
-    puts '-----------------------------------------------------------------------------------------------------'
+    puts dashes
+    puts "--- start of program --- this puzzle starts with"\
+         " #{number_of_completed_cells} completed cells"
+    puts dashes
     puts
     print_string(board)
     puts
@@ -54,9 +57,9 @@ class Sudoku::UI # module Sudoku...class Ui
     puts
     print_string(board)
     puts
-    puts '-----------------------------------------------------------------------------------------------------'
+    puts dashes
     puts '--- end of program'
-    puts '-----------------------------------------------------------------------------------------------------'
+    puts dashes
     puts
   end
 
