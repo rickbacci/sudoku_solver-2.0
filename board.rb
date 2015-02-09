@@ -32,9 +32,6 @@ def generate_board(cells)
   entire_board
 end
 
-board = generate_board(cells)
-
 def board
   generate_board(cells)
-  #@board
 end
