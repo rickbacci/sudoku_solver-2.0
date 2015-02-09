@@ -1,7 +1,7 @@
 
 def puzzle_done?
   solved_cells = 0
-  @board.each do |cell|  
+  @board.each do |cell|
     solved_cells += 1 if cell.cell.possibilities.empty?
   end
   return true if solved_cells == 81
@@ -148,11 +148,11 @@ end
 def record_possibilities_removed(possibilities_r, possibilities_re)
   @log << ''
   @log << "    #{caller_locations(1,1)[0].label}  --- #{possibilities_r} possibilities removed "\
-         "--- #{possibilities_re} remaining" 
+         "--- #{possibilities_re} remaining"
   @log << ''
 end
 
 def print_possibilities_removed(possibilities_removed, possibilities_remaining)
   puts "    #{caller_locations(1,1)[0].label}  --- #{possibilities_removed} possibilities removed "\
-         "--- #{possibilities_remaining} remaining" 
+         "--- #{possibilities_remaining} remaining"
 end
