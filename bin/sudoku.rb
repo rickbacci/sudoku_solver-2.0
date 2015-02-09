@@ -80,7 +80,7 @@ def solve_puzzle
 end
 
 
-start_of_program
+Sudoku::UI.start_of_program(@board, number_of_completed_cells)
 solve_puzzle
 end_of_program
 
