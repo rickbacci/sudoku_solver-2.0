@@ -8,8 +8,6 @@ def puzzle_done?
   false
 end
 
-
-
 def number_of_completed_cells
   board.find_all { |cell| cell.cell.possibilities == [] }.count
 end

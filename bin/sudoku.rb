@@ -46,28 +46,16 @@ def solve_puzzle
 
   Sudoku::UI.loop_start(loops, number_of_completed_cells, number_of_possibilities)
 
-
   check_for_impossibilities
 
   set_number_if_single_possibility
 
   check_for_impossibilities if cells_have_been_set
 
-  puts
   #set_if_last_number_in_row
-
-    check_for_impossibilities if cells_have_been_set
-
-
+  #check_for_impossibilities if cells_have_been_set
   #set_if_last_number_in_col
-
-    #check_for_impossibilities if cells_have_been_set
-
   #set_if_last_number_in_box
-
-    #check_for_impossibilities if cells_have_been_set
-
-  puts
 
   Sudoku::UI.loop_end(loops, board)
 
