@@ -35,7 +35,7 @@ end
 
 
 def solve_puzzle
-  @loops ||= 1
+  loops ||= 1
 
 
   @check_again_for_impossibilities = false
@@ -44,7 +44,7 @@ def solve_puzzle
 
   return puts '--- Puzzle solved!' if @solved_cells_start_of_recursion == 81
 
-  Sudoku::UI.loop_start(@loops, number_of_completed_cells, number_of_possibilities)
+  Sudoku::UI.loop_start(loops, number_of_completed_cells, number_of_possibilities)
 
 
   check_for_impossibilities
@@ -69,13 +69,13 @@ def solve_puzzle
 
   puts
 
-  Sudoku::UI.loop_end(@loops, @board)
+  Sudoku::UI.loop_end(loops, @board)
 
   @solved_cells_end_of_recursion = number_of_completed_cells
 
   return puts '--- Puzzle incomplete!' if no_cells_have_been_set
 
-  @loops += 1
+  loops += 1
   solve_puzzle unless @loops == 25
 end
 
