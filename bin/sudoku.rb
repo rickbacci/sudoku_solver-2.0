@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+lib_path = File.join(File.dirname(__FILE__), '../lib')
+$LOAD_PATH.unshift(lib_path)
+
+require 'sudoku'
+
 require_relative '../puzzles'
 require_relative '../cells'
 require_relative '../data'
