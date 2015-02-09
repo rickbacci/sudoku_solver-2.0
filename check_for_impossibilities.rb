@@ -1,10 +1,9 @@
 
 def check_for_impossibilities
-
   @possibilities_at_start_of_recursion = number_of_possibilities
   @possibilities_after_recursion = number_of_possibilities
 
-  @numbers.each do |num|
+  1.upto(9).each do |num|
 
     starting_possibilities = number_of_possibilities
 
