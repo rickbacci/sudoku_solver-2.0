@@ -48,4 +48,16 @@ class Sudoku::UI # module Sudoku...class Ui
     lines_to_print.join("\n")
   end
 
+  def self.end_of_program(board)
+    puts
+    puts print_puzzle(board)
+    puts
+    print_string(board)
+    puts
+    puts '-----------------------------------------------------------------------------------------------------'
+    puts '--- end of program'
+    puts '-----------------------------------------------------------------------------------------------------'
+    puts
+  end
+
 end

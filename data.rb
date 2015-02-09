@@ -96,17 +96,7 @@ end
 
 
 
-def end_of_program
-  puts
-  puts Sudoku::UI.print_puzzle(@board)
-  puts
-  print_string
-  puts
-  puts '-----------------------------------------------------------------------------------------------------'
-  puts '--- end of program'
-  puts '-----------------------------------------------------------------------------------------------------'
-  puts
-end
+
 
 def loop_start
   puts "--- Start of loop #{@loops} --- #{number_of_completed_cells} completed cells "\
