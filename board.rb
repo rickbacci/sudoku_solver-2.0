@@ -12,7 +12,7 @@ VALUES = ['111', '121', '131', '142', '152', '162', '173', '183', '193',
           '917', '927', '937', '948', '958', '968', '979', '989', '999']
 
 
-def generate_board
+def generate_board(cells)
   entire_board = []
   VALUES.each_with_index do |element, index|
 
@@ -25,15 +25,16 @@ def generate_board
     board.row = row
     board.col = col
     board.box = box
-    board.cell = @cells[index]
+    board.cell = cells[index]
 
     entire_board << board
   end
   entire_board
 end
 
-@board = generate_board
+board = generate_board(cells)
 
 def board
-  @board
+  generate_board(cells)
+  #@board
 end

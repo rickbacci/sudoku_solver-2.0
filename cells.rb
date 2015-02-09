@@ -1,9 +1,10 @@
 
 Cell = Struct.new(:number, :possibilities)
-@cells = []
+cells = []
 @numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-def generate_cells(puzzle)
+
+def generate_cells(puzzle, cells)
 
   (1..81).each do |element|
 
@@ -17,12 +18,16 @@ def generate_cells(puzzle)
       cell.possibilities = []
       cell.number = value
     end
-    
-    @cells << cell
+
+    cells << cell
   end
+  cells
 end
 
-generate_cells(@simple) unless @simple.nil?
-generate_cells(@easy) unless @easy.nil?
-generate_cells(@mild) unless @mild.nil?
+@cells = generate_cells(@simple, cells) unless @simple.nil?
+generate_cells(@easy, cells) unless @easy.nil?
+generate_cells(@mild, cells) unless @mild.nil?
 
+def cells
+  @cells
+end

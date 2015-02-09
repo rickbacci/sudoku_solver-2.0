@@ -34,13 +34,13 @@ def remove_impossibilities(solved_cells, unsolved_cells)
        @log << string
 
       value.cell.possibilities -= [cell.cell.number]
-    end 
+    end
   end
 end
 
 
 def get_cells(&b)
-  @board.find_all(&b)
+  board.find_all(&b)
 end
 
 def unsolved_row(num)

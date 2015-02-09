@@ -2,15 +2,15 @@
 def set_number_if_single_possibility
   completed_cells = number_of_completed_cells
 
-  @board.each do |space|
-    
+  board.each do |space|
+
     if space.cell.possibilities.size == 1
       space.cell.number = space.cell.possibilities[0]
       space.cell.possibilities = []
     end
   end
-  
-  
+
+
   if completed_cells != number_of_completed_cells
     puts
     puts "    #{__callee__} --- #{cells_set} cells set --- "\
@@ -18,7 +18,7 @@ def set_number_if_single_possibility
     puts
     set_number_if_single_possibility
 
-    
+
     @check_again_for_impossibilities = true
   else
     @check_again_for_impossibilities = false
@@ -89,7 +89,7 @@ end
 def set_if_last_number_in_row
  total = []
 
-  row_1_possibilities.each { |cell| cell.cell.possibilities.flat_map { |vals| total << vals } 
+  row_1_possibilities.each { |cell| cell.cell.possibilities.flat_map { |vals| total << vals }
   }
 
 
@@ -127,7 +127,7 @@ end
 
 #   end
 
-    
+
 #   if completed_cells != number_of_completed_cells
 #       puts
 #       puts "    #{__callee__} --- #{cells_set} cells set --- "\
@@ -141,7 +141,7 @@ def remove_hidden_singles(hidden_single)
     hidden_single.each do |val|
         #next if hidden_single.cell.number
           flat << val.cell.possibilities#.count(1)
-      
+
        #if val.cell.possibilities.include?(num) && val.cell.possibilities.size == 1
     end
  total = 0
@@ -155,8 +155,8 @@ def remove_hidden_singles(hidden_single)
 end
 
 
-# @unsolved_cells = @board.find_all { |x| x.row == val && x.cell.possibilities.length === 1 }
-    
+# @unsolved_cells = board.find_all { |x| x.row == val && x.cell.possibilities.length === 1 }
+
     # unless @unsolved_cells.empty?
     #   @unsolved_cells.each do |cell|
     #     cell.cell.number = cell.cell.possibilities[0]
