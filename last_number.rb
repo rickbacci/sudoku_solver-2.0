@@ -10,14 +10,12 @@ def set_number_if_single_possibility
     end
   end
 
-
   if completed_cells != number_of_completed_cells
-    puts
-    puts "    #{__callee__} --- #{cells_set} cells set --- "\
-         "#{cells_completed} cells completed --- #{cells_remaining} remaining"
-    puts
-    set_number_if_single_possibility
 
+    puts "    #{__callee__} --- #{cells_set} cells set --- #{cells_completed}"\
+         " cells completed --- #{cells_remaining} remaining\n\n"
+
+    set_number_if_single_possibility
 
     @check_again_for_impossibilities = true
   else
