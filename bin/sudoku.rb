@@ -1,10 +1,12 @@
-require_relative 'puzzles'
-require_relative 'cells'
-require_relative 'data'
-require_relative 'board'
+#!/usr/bin/env ruby
 
-require_relative 'check_for_impossibilities'
-require_relative 'last_number'
+require_relative '../puzzles'
+require_relative '../cells'
+require_relative '../data'
+require_relative '../board'
+
+require_relative '../check_for_impossibilities'
+require_relative '../last_number'
 
 
 puts `clear && printf '\e[3J'` # this clears the buffer in terminal
@@ -17,13 +19,13 @@ end
 def cells_have_been_set
   @solved_cells_start_of_recursion != number_of_completed_cells
 end
-  
+
 
 
 @log = []
 def log
   @log
-end 
+end
 
 
 
@@ -41,7 +43,7 @@ def solve_puzzle
 
 
   check_for_impossibilities
-  
+
   set_number_if_single_possibility
 
   check_for_impossibilities if cells_have_been_set
@@ -69,8 +71,8 @@ def solve_puzzle
   return puts '--- Puzzle incomplete!' if no_cells_have_been_set
 
   @loops += 1
-  solve_puzzle unless @loops == 25 
-end 
+  solve_puzzle unless @loops == 25
+end
 
 
 start_of_program
