@@ -69,20 +69,19 @@ def solve_puzzle
 
   puts
 
-  Sudoku::UI.loop_end(loops, @board)
+  Sudoku::UI.loop_end(loops, board)
 
   @solved_cells_end_of_recursion = number_of_completed_cells
 
   return puts '--- Puzzle incomplete!' if no_cells_have_been_set
 
   loops += 1
-  solve_puzzle unless @loops == 25
   solve_puzzle unless loops == 25
 end
 
 
-Sudoku::UI.start_of_program(@board, number_of_completed_cells)
+Sudoku::UI.start_of_program(board, number_of_completed_cells)
 solve_puzzle
-Sudoku::UI.end_of_program(@board)
+Sudoku::UI.end_of_program(board)
 
 #log.each { |entry| puts entry}

@@ -33,3 +33,7 @@ def generate_board
 end
 
 @board = generate_board
+
+def board
+  @board
+end

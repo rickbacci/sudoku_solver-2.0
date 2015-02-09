@@ -1,7 +1,7 @@
 
 def puzzle_done?
   solved_cells = 0
-  @board.each do |cell|
+  board.each do |cell|
     solved_cells += 1 if cell.cell.possibilities.empty?
   end
   return true if solved_cells == 81
@@ -11,19 +11,19 @@ end
 def print_objects
   puts
   (1..9).each do |val|
-    puts @board.find_all { |v| v.box == val}
+    puts board.find_all { |v| v.box == val}
     puts
   end
 end
 
 def number_of_completed_cells
-  @board.find_all { |cell| cell.cell.possibilities == [] }.count
+  board.find_all { |cell| cell.cell.possibilities == [] }.count
 end
 
 def number_of_possibilities
   possibilities = []
 
-  @board.each do |cell|
+  board.each do |cell|
     possibilities << cell.cell.possibilities if cell.cell.possibilities.size > 1
   end
   possibilities.flatten.size
@@ -47,7 +47,7 @@ def cells_remaining
 end
 
 def get_cells(&b)
-  @board.find_all(&b)
+  board.find_all(&b)
 end
 
 
