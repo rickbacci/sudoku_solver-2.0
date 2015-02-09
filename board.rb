@@ -1,8 +1,7 @@
 
 Board = Struct.new(:row, :col, :box, :cell)
-@board = []
 
-VALUES = ['111', '121', '131', '142', '152', '162', '173', '183', '193', 
+VALUES = ['111', '121', '131', '142', '152', '162', '173', '183', '193',
           '211', '221', '231', '242', '252', '262', '273', '283', '293',
           '311', '321', '331', '342', '352', '362', '373', '383', '393',
           '414', '424', '434', '445', '455', '465', '476', '486', '496',
@@ -14,13 +13,13 @@ VALUES = ['111', '121', '131', '142', '152', '162', '173', '183', '193',
 
 
 def generate_board
-
+  entire_board = []
   VALUES.each_with_index do |element, index|
-    
+
     row = element[0].to_i
     col = element[1].to_i
     box = element[2].to_i
-     
+
     board = Board.new
 
     board.row = row
@@ -28,9 +27,9 @@ def generate_board
     board.box = box
     board.cell = @cells[index]
 
-    @board << board
+    entire_board << board
   end
-  @board
+  entire_board
 end
 
-generate_board
+@board = generate_board
