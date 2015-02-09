@@ -77,6 +77,7 @@ def solve_puzzle
 
   loops += 1
   solve_puzzle unless @loops == 25
+  solve_puzzle unless loops == 25
 end
 
 
