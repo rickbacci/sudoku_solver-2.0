@@ -8,13 +8,7 @@ def puzzle_done?
   false
 end
 
-def print_objects
-  puts
-  (1..9).each do |val|
-    puts board.find_all { |v| v.box == val}
-    puts
-  end
-end
+
 
 def number_of_completed_cells
   board.find_all { |cell| cell.cell.possibilities == [] }.count

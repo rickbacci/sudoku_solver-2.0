@@ -15,15 +15,6 @@ describe Object do
   end
 
   # TODO: auto-generated
-  describe '#print_objects' do
-    it 'works' do
-      object = Object.new
-      result = object.print_objects
-      expect(result).not_to be_nil
-    end
-  end
-
-  # TODO: auto-generated
   describe '#number_of_completed_cells' do
     it 'works' do
       object = Object.new
