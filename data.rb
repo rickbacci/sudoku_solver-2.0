@@ -78,23 +78,22 @@ end
 
 
 
-def print_puzzle
+def print_puzzle()
   lines_to_print = []
-
-  @test =[]
+  test = []
 
   @board.each do |cell|
     if cell.cell.number.nil?
-      @test << 0
+      test << 0
     else
-      @test << cell.cell.number
+      test << cell.cell.number
     end
   end
 
   3.times do
     3.times do
       r = '    '
-      s = @test.shift(3) << @test.shift(3) << @test.shift(3)
+      s = test.shift(3) << test.shift(3) << test.shift(3)
       r << s.flatten.to_s
       lines_to_print << r
     end
