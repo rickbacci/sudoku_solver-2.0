@@ -78,29 +78,6 @@ end
 
 
 
-def print_puzzle()
-  lines_to_print = []
-  test = []
-
-  @board.each do |cell|
-    if cell.cell.number.nil?
-      test << 0
-    else
-      test << cell.cell.number
-    end
-  end
-
-  3.times do
-    3.times do
-      r = '    '
-      s = test.shift(3) << test.shift(3) << test.shift(3)
-      r << s.flatten.to_s
-      lines_to_print << r
-    end
-  end
-
-  lines_to_print.join("\n")
-end
 
 
 def print_string
@@ -121,7 +98,7 @@ end
 
 def end_of_program
   puts
-  puts print_puzzle
+  puts Sudoku::UI.print_puzzle(@board)
   puts
   print_string
   puts

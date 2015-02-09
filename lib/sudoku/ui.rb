@@ -24,4 +24,28 @@ class Sudoku::UI # module Sudoku...class Ui
     puts string
   end
 
+  def self.print_puzzle(board)
+    lines_to_print = []
+    test = []
+
+    board.each do |cell|
+      if cell.cell.number.nil?
+        test << 0
+      else
+        test << cell.cell.number
+      end
+    end
+
+    3.times do
+      3.times do
+        r = '    '
+        s = test.shift(3) << test.shift(3) << test.shift(3)
+        r << s.flatten.to_s
+        lines_to_print << r
+      end
+    end
+
+    lines_to_print.join("\n")
+  end
+
 end
