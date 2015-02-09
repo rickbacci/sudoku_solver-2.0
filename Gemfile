@@ -16,4 +16,6 @@ group :development do
   gem 'pry-nav'
   gem 'guard-shell'
   gem 'hitimes'
+  gem 'rspec-kickstarter'
+
 end
